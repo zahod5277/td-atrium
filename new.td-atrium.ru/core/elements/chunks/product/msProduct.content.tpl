@@ -71,12 +71,9 @@
                     <input type="hidden" name="options[m2price]">
                     <input type="hidden" name="totalprice" value="{$price}">
                     <div class="col-xs-12 col-md-6">
-                        <select name="quantity" id="quan" class="form-control countInput">
-                            <option data-unit="шт" value="{$price}">шт.</option>
-                            {if $_modx->resource.inM2!='' || $_modx->resource.inM2!='0'}
-                            <option data-unit="м2" value="{$price*$_modx->resource.inM2}">м<sup>2</sup></option>
-                            {/if}
-                        </select>
+                        <strong class="msProductContentUnit">
+                            {$unit}
+                        </strong>
                     </div>
                 </div>
             </div>
