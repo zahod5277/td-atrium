@@ -1,8 +1,9 @@
 {var $currency='fa fa-rub'}
+<h1>{$price}</h1>
 {if $price=='0'}
     {if $price_eu!='0'}
         <strong>
-        {var $price = $_modx->runSnippet('@FILE:snippets/currConverter.php',[
+            {var $price = $_modx->runSnippet('@FILE:snippets/currConverter.php',[
             'input' => $price_eu,
             'multiplier' => 'EUR',
             'format' => '[0, "", ""]',
@@ -10,6 +11,16 @@
         ])}
         </strong>
     {/if}
+{/if}
+{if $unit=='м.кв.'}
+    {var $priceM2 = $price}
+    {var $priceInPcs = $_modx->runSnippet('@FILE:snippets/inM2Divider.php',[
+        'price' => $price,
+        'inM2' => $inM2
+    ])}
+    {else}
+        {var $priceM2 = $price * $inM2}
+        {var $priceInPcs = $price}
 {/if}
 {$_modx->runSnippet('!pdoCrumbs', [ 'showHome' => 1, ])}
 <h1>{$_modx->resource.pagetitle}</h1>
@@ -23,26 +34,25 @@
             <div class="form-group">  
                 <div class="col-xs-12">
                     <div class="col-xs-12 col-md-4" id="mainPrice">
-                        {if $unit=='м.кв.'}
-                            {var $price = $_modx->runSnippet('@FILE:snippets/inM2Divider.php',[
-                                'price' => $price,
-                                'inM2' => $_modx->resource.inM2
-                            ])}
-                        {/if}
                         <h3>Цена за шт:</h3>
                         <label class="price-main">
-                            <span>{$price}</span> <i class="{$currency}"></i>
-                            [[!+old_price:gt=`0`:then=`<span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>`:else=``]]
+                            <span>{$priceInPcs}</span> <i class="{$currency}"></i>
+                            {if $unit=='шт.'}
+                                [[!+old_price:gt=`0`:then=`<span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>`:else=``]]
+                            {/if}
                         </label>
                     </div>
-                        {if $_modx->resource.inM2!='' || $_modx->resource.inM2!='0'}
+                    {if $_modx->resource.inM2!='' || $_modx->resource.inM2!='0'}
                         <div class="col-xs-12 col-md-4" id="m2price">
                             <h3>Цена за м<sup>2</sup>:</h3>
                             <label class="price-main">
-                                <span>{$price * $_modx->resource.inM2}</span> <i class="{$currency}"></i>
+                                <span>{$priceM2}</span> <i class="{$currency}"></i>
+                                {if $unit=='м.кв.'}
+                                    [[!+old_price:gt=`0`:then=`<span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>`:else=``]]
+                                {/if}
                             </label>
                         </div>
-                       {/if}     
+                    {/if}     
                     <div class="col-xs-12 col-md-4" id="totalprice">
                         <h3>Итого:</h3>
                         <p class="price-main" id="product_total"><span>{$price}</span> {$_modx->lexicon('ms2_frontend_currency')}</p>
@@ -69,7 +79,7 @@
                         <input type="number" name="count" id="product_price" class="countInput input-sm form-control" value="1" min="1" />
                     </div>
                     <input type="hidden" name="options[m2price]">
-                    <input type="hidden" id="totalprice" name="totalprice" value="{$price}">
+                    <input type="hidden" name="totalprice" value="{$price}">
                     <div class="col-xs-12 col-md-6">
                         <strong class="msProductContentUnit">
                             {$unit}
