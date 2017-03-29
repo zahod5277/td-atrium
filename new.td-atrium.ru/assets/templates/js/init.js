@@ -13,7 +13,8 @@ jQuery(document).ready(function () {
         $('#call-me-form input[name="product"]').val(product);
     });
     $('.countInput').on('change', function () {
-        var val = $('#totalprice').val() * $('#quan').val();
+        var val = $('input[name="totalprice"]').val() * $(this).val();
+        console.log($('input[name="totalprice"]').val() + '|' + $(this).val());
         $('#product_total span').html(val);
     });
     //быстрый просмотр товара
