@@ -1,0 +1,56 @@
+@media (max-device-width:900px){
+   .menu_name{
+        top: -8px;
+        left: 0px;
+    }
+    
+    .hover-overlay {
+        display:none;
+    }
+    
+    .btn-cat{
+    top: 44%;
+    left: 30%;
+    }
+}
+
+@media (min-width: 1200px){
+    #sidebar{
+        width:220px;
+        padding-left:0px;
+        padding-right:0px!important;
+    }
+    #content{
+        width:919px;
+    }
+}
+@media (min-width: 992px){
+    .menu_name{
+        top: -35px;
+        left: 30px;
+    }
+    .ms2_product{
+        width: 31.75%;
+        min-height: 375px;
+    }
+    
+    .ms2_product .image a{
+        display:block;
+        min-height:170px;
+    }
+    .hover-overlay {
+    width: 89%;
+    height: 78%;
+    }
+    
+    .btn-cat{
+    top: 44%;
+    left: 30%;
+    }
+    
+}
+@media (min-width: 768px){
+    .modal-dialog {
+        width: 768px;
+    }    
+}
