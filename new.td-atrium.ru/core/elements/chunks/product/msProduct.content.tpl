@@ -69,7 +69,7 @@
                         <input type="number" name="count" id="product_price" class="countInput input-sm form-control" value="1" min="1" />
                     </div>
                     <input type="hidden" name="options[m2price]">
-                    <input type="hidden" name="totalprice" value="{$price}">
+                    <input type="hidden" id="totalprice" name="totalprice" value="{$price}">
                     <div class="col-xs-12 col-md-6">
                         <strong class="msProductContentUnit">
                             {$unit}
