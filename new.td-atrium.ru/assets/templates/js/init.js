@@ -13,13 +13,8 @@ jQuery(document).ready(function () {
         $('#call-me-form input[name="product"]').val(product);
     });
     $('.countInput').on('change', function () {
-        var val = $('#product_price').val() * $('#quan').val();
+        var val = $('#totalprice').val() * $('#quan').val();
         $('#product_total span').html(val);
-        if ($('#quan option[value="' + $('#quan').val() + '"]').data('unit') === 'шт') {
-            $('input[name="options[m2price]"').val('');
-        } else {
-            $('input[name="options[m2price]"').val(val / $('#quan option[data-unit="м2"]').val());
-        }
     });
     //быстрый просмотр товара
     // Вешаем обработчик события "клик" на все ссылки с классом ajax_link
