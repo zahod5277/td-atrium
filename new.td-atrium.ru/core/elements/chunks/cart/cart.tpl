@@ -26,9 +26,6 @@
                     {/if}
                     {if $product.options?}
                         <div class="small">
-                            {if $product.options['m2price']}
-                                {$product.options['m2price']} м<sup>2</sup>
-                            {/if}
                         </div>
                     {/if}
                 </td>
@@ -39,11 +36,7 @@
                             <input type="number" name="count" value="{$product.count}"
                                    class="input-sm form-control"/>
                             <span class="hidden-xs">
-                                {if $product.options['m2price']}
-                                     м<sup>2</sup>
-                                    {else}
-                                    {'ms2_frontend_count_unit' | lexicon}
-                                    {/if}
+                                {$product.unit}
                             </span>
                             <button class="btn btn-default" type="submit" name="ms2_action" value="cart/change">
                                 <i class="glyphicon glyphicon-refresh"></i>
