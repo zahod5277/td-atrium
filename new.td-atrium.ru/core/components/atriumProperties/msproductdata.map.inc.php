@@ -14,7 +14,9 @@ return array(
         'distributor' => NULL,
         'avail' => NULL,
         'price_eu' => NULL,
-        'unit' => NULL
+        'unit' => NULL,
+        'length' => NULL,
+        'width' => NULL
     )
     , 'fieldMeta' => array(
         'category' => array(
@@ -104,6 +106,20 @@ return array(
         'distributor' => array(
             'dbtype' => 'varchar',
             'precision' => '55',
+            'phptype' => 'string',
+            'null' => true,
+            'default' => NULL
+        ),
+        'length' => array(
+            'dbtype' => 'varchar',
+            'precision' => '15',
+            'phptype' => 'string',
+            'null' => true,
+            'default' => NULL
+        ),
+        'width' => array(
+            'dbtype' => 'varchar',
+            'precision' => '15',
             'phptype' => 'string',
             'null' => true,
             'default' => NULL
@@ -229,6 +245,32 @@ return array(
         ),
         'quantity' => array(
             'alias' => 'quantity'
+            , 'primary' => false
+            , 'unique' => false
+            , 'type' => 'BTREE'
+            , 'columns' => array(
+                'action' => array(
+                    'length' => ''
+                    , 'collation' => 'A'
+                    , 'null' => false
+                )
+            )
+        ),
+        'length' => array(
+            'alias' => 'length'
+            , 'primary' => false
+            , 'unique' => false
+            , 'type' => 'BTREE'
+            , 'columns' => array(
+                'action' => array(
+                    'length' => ''
+                    , 'collation' => 'A'
+                    , 'null' => false
+                )
+            )
+        ),
+        'width' => array(
+            'alias' => 'width'
             , 'primary' => false
             , 'unique' => false
             , 'type' => 'BTREE'
