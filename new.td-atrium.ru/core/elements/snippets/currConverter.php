@@ -10,13 +10,7 @@ if(!empty($divider)) {
 	$output = $currencyrate->formatPrice(($input / $divider), $format, $noZeros);
 }
 if(!empty($multiplier)) {
-	$multiplier = $list[$multiplier];
+        $multiplier = $list[$multiplier];
         $output = $currencyrate->formatPrice(($input * $multiplier), $format, $noZeros);
 }
 return $output;
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-

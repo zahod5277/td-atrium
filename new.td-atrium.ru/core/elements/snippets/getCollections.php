@@ -26,29 +26,25 @@ foreach($pages as $page){
     }
     if ($coll_template == 3){
     $q = $modx->newQuery('msProductData', array('id:>' => 0));
-    $q->select('msProductData.price as price,Product.pagetitle,TV.tmplvarid,TV.value');
     $q->leftJoin('msProduct', 'Product', 'Product.id = msProductData.id');
-    $q->leftJoin('modTemplateVarResource', 'TV', 'msProductData.id=TV.contentid');
     $q->sortby('msProductData.price','ASC');
-    $q->limit(4,0);
-    $q->where(array('Product.parent' => $coll_id,'TV.tmplvarid:IN' =>  array(6,10,3) ));
+    $q->limit(1);
+    $q->where(array('Product.parent' => $coll_id));
     $q->prepare();
     $q->stmt->execute();
+    //return $q->toSQL();
     $res = $q->stmt->fetchAll(PDO::FETCH_ASSOC);
-    $price = $res[0]['price'];
-    $manufacturer_name = $res[0]['value'];
-    $format = $res[1]['value'];
-    $country = $res[2]['value'];
-    $placeholders = array('min_price' => $price,
+    $format = $res[0]['msProductData_length'].' x '.$res[0]['msProductData_width'];
+    $country = $res[0]['msProductData_made_in'];
+    $placeholders = array(
+            'format' => $format,
             'pagetitle' => $coll_pagetitle,
             'ico' => $coll_ico,
-            'manufacturer_name' => $manufacturer_name,
             'country' => $country,
-            'format' => $format,
             'uri' => $coll_uri,
         );
 } else {
-      $placeholders = array('min_price' => $price,
+      $placeholders = array(
             'pagetitle' => $coll_pagetitle,
             'ico' => $coll_ico,
             'uri' => $coll_uri 

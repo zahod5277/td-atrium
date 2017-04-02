@@ -30,7 +30,7 @@
     </div>
     <div class="col-xs-12 col-md-10" id="content">
         <div class="category-details">
-            {$_modx->runSnippet('pdoCrumbs', [ 'showHome' => 1, ])}
+            {include 'file:chunks/common/crumbs.tpl'}
             <h1>{$_modx->resource.pagetitle}</h1>
             <div id="categories-list" class="col-xs-12 col-md-12">
 
@@ -39,11 +39,11 @@
                     'element' => '@FILE:snippets/getCollections.php',
                     'id' => $_modx->resource.id,
                     'limit' => 15,
-                    'pageLinkScheme' => '/[[+pageVarKey]]-[[+page]]',
+                    'pageLinkScheme' => '/{$pageVarKey}-{$page}',
                     'pageNavVar' => 'pagenav'
                     ]
                     )}
-                [[!+pagenav]]
+                {$_modx->getPlaceholder('pagenav')}
             </div>
         </div>
         <div class="category-details">
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="mse2_pagination">
-                    [[!+page.nav]]
+                    {$_modx->getPlaceholder('page.nav')}
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
 {var $currency='fa fa-rub'}
-<h1>{$price}</h1>
 {if $price=='0'}
     {if $price_eu!='0'}
         <strong>

@@ -1,16 +1,20 @@
 {*Заполняем значения цен, исходя из единицы измерения и наличия цены в евро*}
 {var $currency='fa fa-rub'}
-{if $price=='0'}
+{if $price=='0'||$price==''}
     {if $price_eu!='0'}
-        <strong>
         {var $price = $_modx->runSnippet('@FILE:snippets/currConverter.php',[
             'input' => $price_eu,
             'multiplier' => 'EUR',
             'format' => '[0, "", ""]',
             'noZeros' => '0'
         ])}
-        </strong>
     {/if}
+{/if}
+{if $unit=='м.кв.'}
+    {var $price = $_modx->runSnippet('@FILE:snippets/inM2Divider.php',[
+        'price' => $price,
+        'inM2' => $inM2
+    ])}
 {/if}
 <div class="col-xs-12 col-sm-6 col-md-4 ms2_product">
     <div class="image">
@@ -28,22 +32,16 @@
     </div>
     <div class="col-xs-12 col-md-12 no-padding price-outer">
         <div class="col-xs-12 col-md-8 no-padding">
-            {if $unit=='м.кв.'}
-                {var $price = $_modx->runSnippet('@FILE:snippets/inM2Divider.php',[
-                    'price' => $price,
-                    'inM2' => $inM2
-                ])}
-            {/if}
             <p class="price-desc">Цена за шт.</p>
-            <span class="price">{$price} <i class="{$currency}"></i></span>
-            
+            <span class="price">{$price|number: 2 : '.' : ' '} <i class="{$currency}"></i></span>
+
         </div>
-            {if $inM2!='' || $inM2!='0'}
-                <div class="col-xs-12 col-md-4 no-padding">
-                    <p class="price-desc">Цена за м<sup>2</sup></p>
-                    <span class="price">{$price * $inM2} <i class="{$currency}"></i></span>
-                </div>
-            {/if}
+        {if $inM2!='' || $inM2!='0'}
+            <div class="col-xs-12 col-md-4 no-padding">
+                <p class="price-desc">Цена за м<sup>2</sup></p>
+                <span class="price">{$price*$inM2|number:2:'.':' '} <i class="{$currency}"></i></span>
+            </div>
+        {/if}
         <div class="instock-outer col-xs-12 no-padding">
             <div class="col-xs-12 col-md-6 no-padding">
                 <p><i class="fa fa-check"></i> {$avail}</p>
