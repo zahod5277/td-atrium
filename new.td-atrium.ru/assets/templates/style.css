@@ -189,7 +189,7 @@ header a i:hover, header button.button:hover,.column a i:hover{
 }
 
 .heading{
-    float: right;
+    margin-left: 56px;
     z-index: 1;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -1347,4 +1347,13 @@ textarea.form-control{
 .comparison-link{
     font-size: 1.2rem;
     padding-top: 10px;
+}
+
+#searchForm{
+    margin-top:15px;
+}
+
+.cartTitle{
+    top: -8px;
+    left: 30px;
 }

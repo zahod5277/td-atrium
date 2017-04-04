@@ -30,12 +30,13 @@
                     <a href="#eee" class="menu_head"></a>
                     <a href="#eee" class="menu_name">Мой аккаунт</a>
                 </div>*}
-                <div class="col-xs-3 col-md-3">
+                <div class="col-xs-12">
                     <div class="mini-cart">
+                        <span class="cartTitle">Корзина</span>
                         <a class="heading" href="{$_modx->makeUrl(12)}" title="В корзину"></a>
                     </div>
                 </div>
-                <div class=" col-xs-12 col-md-12">
+                <div class="col-xs-12 col-md-12" id="searchForm">
                     {$_modx->runSnippet('!mSearchForm',[
                         'tplForm' => '@FILE:chunks/filter/searchForm.tpl',
                         'element' => 'msProducts',
