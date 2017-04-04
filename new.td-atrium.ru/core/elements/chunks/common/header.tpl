@@ -26,10 +26,10 @@
                 <a href="#ddd" title="г. Санкт-Петербург, ул. Железноводская, д. 12"><i class="fa fa-map-marker"></i> Контакты</a>
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-sm-3 col-md-3 col-lg-2" id="account">
-                <div class="col-xs-9 col-md-9">
+{*                <div class="col-xs-9 col-md-9">
                     <a href="#eee" class="menu_head"></a>
                     <a href="#eee" class="menu_name">Мой аккаунт</a>
-                </div>
+                </div>*}
                 <div class="col-xs-3 col-md-3">
                     <div class="mini-cart">
                         <a class="heading" href="{$_modx->makeUrl(12)}" title="В корзину"></a>
@@ -39,7 +39,7 @@
                     {$_modx->runSnippet('!mSearchForm',[
                         'tplForm' => '@FILE:chunks/filter/searchForm.tpl',
                         'element' => 'msProducts',
-                        'pageId' => '4895'
+                        'pageId' => '13'
                         'limit' => 10
                     ])}
                 </div>

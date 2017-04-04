@@ -1,5 +1,5 @@
 {if $total!='0'}
-<div class="comments">
+<div class="comments col-xs-12">
     <h3 class="title">{'comments'|lexicon} (<span id="comment-total">{$total}</span>)</h3>
 
     <div id="comments-wrapper">

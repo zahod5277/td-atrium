@@ -1,6 +1,6 @@
 <div class="col-xs-12">
     <div id="comment-form-placeholder">
-        <form id="comment-form" action="" method="post" class="well">
+        <form id="comment-form" action="{$_modx->resource.id|url}" method="post" class="well">
             <div id="comment-preview-placeholder"></div>
             <input type="hidden" name="thread" value="{$thread}"/>
             <input type="hidden" name="parent" value="0"/>

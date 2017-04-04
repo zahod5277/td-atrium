@@ -2,7 +2,7 @@
     <a class="cat-title" title="{$pagetitle}" href="{$uri}">
         <img class="img img-responsive" src="{$ico|phpthumbon:'w=250&h=250&zc=1'}" alt="{$pagetitle}">
         <span>{$pagetitle}</span>
-        <span>{$country}</span>
-        <span>{$format}</span>
+{*        <span>{$country}</span>
+        <span>{$format}</span>*}
     </a>
 </div>

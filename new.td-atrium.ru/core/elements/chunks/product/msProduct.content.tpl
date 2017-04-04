@@ -35,9 +35,11 @@
                     <div class="col-xs-12 col-md-4" id="mainPrice">
                         <h3>Цена за шт:</h3>
                         <label class="price-main">
-                            <span>{$priceInPcs}</span> <i class="{$currency}"></i>
+                            <span>{$priceInPcs|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
                             {if $unit=='шт.'}
-                                [[!+old_price:gt=`0`:then=`<span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>`:else=``]]
+                                {if $old_price>0}
+                                    <span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>
+                                {/if}
                             {/if}
                         </label>
                     </div>
@@ -45,9 +47,11 @@
                         <div class="col-xs-12 col-md-4" id="m2price">
                             <h3>Цена за м<sup>2</sup>:</h3>
                             <label class="price-main">
-                                <span>{$priceM2}</span> <i class="{$currency}"></i>
+                                <span>{$priceM2|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
                                 {if $unit=='м.кв.'}
-                                    [[!+old_price:gt=`0`:then=`<span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>`:else=``]]
+                                    {if $old_price>0}
+                                        <span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>
+                                    {/if}
                                 {/if}
                             </label>
                         </div>
@@ -75,7 +79,7 @@
                 <label class="col-sm-12 control-label" for="product_price">{$_modx->lexicon('ms2_cart_count')}:</label>
                 <div class="col-sm-offset-4 col-sm-5 count-outer">
                     <div class="col-xs-12 col-md-6 no-padding">
-                        <input type="number" name="count" id="product_price" class="countInput input-sm form-control" value="1" min="1" />
+                        <input type="number" name="count" id="product_price" class="countInput input-sm form-control" value="1" min="1" max="quantity"/>
                     </div>
                     <input type="hidden" name="options[m2price]">
                     <input type="hidden" name="totalprice" value="{$price}">
@@ -94,7 +98,7 @@
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#chiper">Нашли дешевле?</button>
                 </div>
             </div>
-            {include 'file:chunks/product/tabs.tpl'}
         </form>
+            {include 'file:chunks/product/tabs.tpl'}
     </div>
 </div>

@@ -86,7 +86,7 @@
         </div>
         <div id="menu2" class="tab-pane fade">
             <div class="row no-padding">
-                {$_modx->runSnippet('TicketComments',[
+                {$_modx->runSnippet('!TicketComments',[
                     'allowGuest' => 1,
                     'tplComments' => '@FILE:chunks/reviews/commentsWrapper.tpl',
                     'tplCommentFormGuest' => '@FILE:chunks/reviews/tplCommentsForm.tpl'

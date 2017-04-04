@@ -11,7 +11,6 @@
         'tplFilter.row.default' => '@FILE:chunks/filter/mFilter2.filter.checkbox.tpl',
         'tplFilter.row.ms|price' => '@FILE:chunks/filter/mFilter2.filter.number.tpl',
         'tplFilter.outer.ms|price' => '@FILE:chunks/filter/mFilter2.filter.slider.tpl',
-        'tpl' => '@FILE:chunks/product/product.row.tpl',
-        'includeTVs' => 'inM2'
+        'tpl' => '@FILE:chunks/product/product.row.tpl'
         ])}
 </div>
