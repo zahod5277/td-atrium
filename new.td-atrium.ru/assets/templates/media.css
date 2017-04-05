@@ -23,6 +23,9 @@
     #content{
         width:919px;
     }
+    #textContent{
+        width:1130px;
+    }
 }
 @media (min-width: 992px){
     .menu_name{
