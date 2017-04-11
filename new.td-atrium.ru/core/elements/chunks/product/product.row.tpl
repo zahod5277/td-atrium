@@ -37,9 +37,10 @@
 
         </div>
         {if $inM2!='' || $inM2!='0'}
+            {var $m2price = $price*$inM2}
             <div class="col-xs-12 col-md-4 no-padding">
                 <p class="price-desc">Цена за м<sup>2</sup></p>
-                <span class="price">{$price*$inM2|number:2:'.':' '} <i class="{$currency}"></i></span>
+                <span class="price">{$m2price|number: 0 :'.':' '} <i class="{$currency}"></i></span>
             </div>
         {/if}
         <div class="instock-outer col-xs-12 no-padding">
