@@ -46,9 +46,10 @@
                     </tr>
                     {/if}
                     {if $vendor?}
+                    {var $vendorName = $_modx->runSnippet('@FILE:snippets/getVendor.php',['vendor' => $vendor])}
                     <tr>
                         <td>Производитель</td>
-                        <td>{$vendor}</td>
+                        <td>{$vendorName}</td>
                     </tr>
                     {/if}
                     {if $inM2?}
