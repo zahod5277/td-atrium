@@ -23,9 +23,7 @@
             <div class="form-group col-xs-12 form-inline">
                 <label class="col-sm-12 control-label" for="product_price">{$_modx->lexicon('ms2_cart_count')}:</label>
                 <div class="col-sm-offset-5 col-sm-3">
-                    <span class="quantity-operator plus">+</span>
-                    <input type="text" name="count" id="product_price" class="input-sm form-control" value="1" />
-                    <span class="quantity-operator minus">-</span>
+                    <input type="text" data-min="1" data-max="{$quantity}" {if $unit == 'шт.'}data-unit="PCE"{/if} name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
                     {$_modx->lexicon('ms2_frontend_count_unit')}
                 </div>
             </div>

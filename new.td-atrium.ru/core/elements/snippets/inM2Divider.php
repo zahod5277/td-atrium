@@ -5,7 +5,8 @@ if ((isset($inM2)) && (isset($price))){
         $price = str_replace(' ', '', $price);
         $output = $price/$inM2;
     } else {
-        $output = 0;
+        $price = str_replace(' ', '', $price);
+        $output = "N/A";
     }
 } else {
     $output = 'Невозможно рассчитать';

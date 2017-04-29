@@ -17,9 +17,9 @@
         'price' => $price,
         'inM2' => $inM2
     ])}
-    {else}
-        {var $priceM2 = $price * $inM2}
-        {var $priceInPcs = $price}
+{else}
+    {var $priceM2 = $price * $inM2}
+    {var $priceInPcs = $price}
 {/if}
 {$_modx->runSnippet('!pdoCrumbs', [ 'showHome' => 1, ])}
 <h1>{$_modx->resource.pagetitle}</h1>
@@ -79,7 +79,9 @@
                 <label class="col-sm-12 control-label" for="product_price">{$_modx->lexicon('ms2_cart_count')}:</label>
                 <div class="col-sm-offset-4 col-sm-5 count-outer">
                     <div class="col-xs-12 col-md-6 no-padding">
-                        <input type="number" name="count" id="product_price" class="countInput input-sm form-control" value="1" min="1" max="quantity"/>
+                        <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
+                        <input type="text" data-min="1" data-max="{$quantity}" {if $unit == 'шт.'}data-unit="PCE"{/if} name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
+                        <i data-operator="plus" class="fa quantity-operator fa-plus"></i>
                     </div>
                     <input type="hidden" name="options[m2price]">
                     <input type="hidden" name="totalprice" value="{$price}">
@@ -88,6 +90,13 @@
                             {$unit}
                         </strong>
                     </div>
+                    {if $unit == 'шт.'}
+                        <div class="col-xs-12">
+                            <i class="almost-equal" data-in="{$inM2}">
+                                &#8776; <i>{(1/$inM2)|number:2:'.':' '}</i> м<sup>2</sup>.
+                            </i>
+                        </div>
+                    {/if}
                 </div>
             </div>
             <div class="col-xs-12 col-md-12" id="cheaper-btns">
@@ -99,6 +108,6 @@
                 </div>
             </div>
         </form>
-            {include 'file:chunks/product/tabs.tpl'}
+        {include 'file:chunks/product/tabs.tpl'}
     </div>
 </div>
