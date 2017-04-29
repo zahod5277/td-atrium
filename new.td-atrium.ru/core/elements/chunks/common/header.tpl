@@ -30,18 +30,15 @@
                     <i class="fa fa-map-marker"></i> Контакты
                 </a>
             </div>
-            <div class="col-xs-8 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-sm-3 col-md-3 col-lg-2" id="account">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-sm-3 col-md-3 col-lg-2">
 {*                <div class="col-xs-9 col-md-9">
                     <a href="#eee" class="menu_head"></a>
                     <a href="#eee" class="menu_name">Мой аккаунт</a>
                 </div>*}
-                <div class="col-xs-12">
-                    <div class="mini-cart">
-                        <span class="cartTitle">Корзина</span>
-                        <a class="heading" href="{$_modx->makeUrl(12)}" title="В корзину"></a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-12" id="searchForm">
+                {$_modx->runSnippet('!msMiniCart',[
+                    'tpl' => '@FILE:chunks/cart/minicart.tpl'
+                ])}
+                <div class="col-xs-12 col-md-12 no-padding" id="searchForm">
                     {$_modx->runSnippet('!mSearchForm',[
                         'tplForm' => '@FILE:chunks/filter/searchForm.tpl',
                         'element' => 'msProducts',

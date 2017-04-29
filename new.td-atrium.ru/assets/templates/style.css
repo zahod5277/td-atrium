@@ -189,7 +189,6 @@ header a i:hover, header button.button:hover,.column a i:hover{
 }
 
 .heading{
-    margin-left: 110px;
     z-index: 1;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -197,24 +196,62 @@ header a i:hover, header button.button:hover,.column a i:hover{
     border-radius: 5px;
     height: 26px;
     width: 26px;
-    background: #ccc;
-    display: block;
-    background: url('img/icon-cart.png') 50% 50% no-repeat #FF9933;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+    background: #f93;
+    display: inline-block;
     -moz-box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
     -webkit-box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
     box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+    color: white;
 }
 
+.heading i{
+    position: relative;
+    top: 3px;
+    left: -6px;
+}
+
+.heading:hover{
+    background-color: #ccc !important;
+}
+
+.heading:hover i{
+    background: transparent;
+    color:white;
+}
 
 .cartTitle{
     top: 23px;
-    left: 30px;
-    position: relative;
+    left: 0px;
+}
+
+#msMiniCart{
+    margin-top: 25px;
+}
+
+.mini-cart{
+    text-align: right;
+}
+
+.ms2_total_count{
+    display: none;
+}
+
+.full .ms2_total_count{
+    display: block;
+    position: absolute;
+    display: block;
+    position: absolute;
+    top: -12px;
+    right: -8px;
+    background: #e26045;
+    border-radius: 50px;
+    padding: 0px 5px;
+    color: #fff;
+    font-weight: 300;
+}
+
+#msMiniCart{
+    font-size: 1em!important;
 }
 
 #account{
@@ -971,7 +1008,6 @@ ul.pagination li a.active, ul.pagination li a:hover,.pagination>.active>a:hover,
 
 .quantity-operator{
     background: #F8F8F8;
-    border: 1px solid #DDDDDD;
     bottom: 1px;
     color: #000000 !important;
     cursor: pointer;
@@ -1095,6 +1131,7 @@ ul.pagination li a.active, ul.pagination li a:hover,.pagination>.active>a:hover,
     color:white;
     text-decoration:none;
     text-align:center;
+    border-radius: 5px;
 }
 
 .cart-btn i{
@@ -1263,7 +1300,7 @@ textarea.form-control{
 .search-btn{
     position: absolute;
     top:9px;
-    right:44px;
+    right:10px;
 }
 
 #search-wrng{
@@ -1358,4 +1395,17 @@ textarea.form-control{
 
 #searchForm{
     margin-top:15px;
+}
+
+
+#result h3{
+    font-size: 16px;
+}
+
+#result .price-main{
+    font-size: 18px;
+}
+
+#msCart{
+    margin-bottom: 40px;
 }

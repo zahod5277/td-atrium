@@ -9,40 +9,21 @@ jQuery(document).ready(function () {
         $("#categories-list").hide();
     });
     $('input[data-unit="PCE"]').on('change',function(){
-        var inM2 = $(this).parents('form').find('.almost-equal').data('in'),
-        prCount = $(this).parents('form').find('input[data-unit="PCE"]').val();
-        console.log(inM2 + '--' + prCount);
-        summaryM2 = Math.round(((prCount/inM2)*100))/100;
-        $(this).parents('form').find('.almost-equal i').html(summaryM2);
+        inM2Titler(this);
     });
-    $('body').on('click', 'i', function(){
-        
+    $('#result').on('click', 'i', function(){
+        quantityChanger($(this));
     });
     $('.quantity-operator').on('click', function(){
-        var input = $(this).parents('.form-group').find('input[name="count"]'),
-            min = 1,
-            val = parseInt($(input).val()),
-            max = parseInt($(input).data('max'));
-       if ($(this).data('operator')==='minus'){
-           if (val > min){
-            $(input).val(val-1);
-            $('input[data-unit="PCE"]').trigger('change');
-           }
-       } else {
-           if (val < max){
-            $(input).val(val+1);
-            $('input[data-unit="PCE"]').trigger('change');
-           }
-       }
+        quantityChanger($(this));
+    });
+    $('body').on('change', '.countInput',function () {
+        var val = $('input[name="totalprice"]').val() * $(this).val();
+        $('#product_total span').html(val);
     });
     $('.one-click-buy').click(function () {
         var product = $(this).data('product');
         $('#call-me-form input[name="product"]').val(product);
-    });
-    $('.countInput').on('change', function () {
-        var val = $('input[name="totalprice"]').val() * $(this).val();
-        console.log($('input[name="totalprice"]').val() + '|' + $(this).val());
-        $('#product_total span').html(val);
     });
     //быстрый просмотр товара
     $('body').on('click', '.ajax_link', function () {
@@ -67,3 +48,28 @@ jQuery(document).ready(function () {
         }
     });
 });
+
+function quantityChanger($this){
+        var input = $($this).parents('.form-group').find('input[name="count"]'),
+            min = 1,
+            val = parseInt($(input).val()),
+            max = parseInt($(input).data('max'));
+       if ($($this).data('operator')==='minus'){
+           if (val > min){
+            $(input).val(val-1);
+           }
+       } else {
+           if (val < max){
+            $(input).val(val+1);
+           }
+       }
+    inM2Titler($($this).parents('.form-group').find('input[data-unit="PCE"]'));
+    $($this).parents('td.count').find('button[value="cart/change"]').trigger('click');
+}
+
+function inM2Titler($this){
+     var inM2 = $($this).parents('form').find('.almost-equal').data('in'),
+        prCount = $($this).parents('form').find('input[data-unit="PCE"]').val(),
+        summaryM2 = Math.round(((prCount/inM2)*100))/100;
+        $($this).parents('form').find('.almost-equal i').html(summaryM2);
+}

@@ -5,9 +5,6 @@ if ($product = $modx->getObject('msProduct', $id)) {
         'includeContent' => 1,
         'resources' => $id,
         'limit' => 1,
-        'includeTVs' => 'collection,category,primenenie,format,surface,country',
-        'processTVs' => 1,
-        'prepareTVs' => 1,
         'tpl' => '@FILE:chunks/product/quickView.tpl'
     ));
 } else {

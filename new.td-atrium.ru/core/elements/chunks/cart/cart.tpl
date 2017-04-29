@@ -1,4 +1,8 @@
-<div id="msCart">
+<div id="msCart" class="col-xs-12 no-padding">
+    <h1>Моя корзина</h1>
+    {if !count($products)}
+        {'ms2_cart_is_empty' | lexicon}
+    {else}
     <table class="table table-striped">
         <tr class="header">
             <th class="image span2 col-md-2">&nbsp;</th>
@@ -91,6 +95,7 @@
         </form>
     </div>
     <div class="col-xs-12 col-md-3 col-md-offset-1 cart-btn-outer">
-        <a href="{$_modx->makeUrl(4892)}" title="Оформить заказ" class="cart-btn"><i class="fa fa-check"></i>Оформить заказ</a>
+        <a href="{$_modx->makeUrl(3858)}" title="Оформить заказ" class="cart-btn"><i class="fa fa-check"></i>Оформить заказ</a>
     </div>
+    {/if}
 </div>
