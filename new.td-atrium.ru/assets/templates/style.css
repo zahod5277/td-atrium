@@ -924,10 +924,19 @@ ul.pagination li a.active, ul.pagination li a:hover,.pagination>.active>a:hover,
     color: #FF9933;
     font-family: "Century Gothic", "Trebuchet MS", "Helvetica", "Arial", sans-serif;
     font-size:1em;
-    text-align:center;
-    padding-left: 30px;
+    text-align:left;
     padding-bottom: 10px;
 } 
+
+.form-horizontal .control-label{
+    padding-top: 0px;
+}
+
+.cartAddTitle{
+    position: absolute;
+    top: 20px;
+    left: 80px;
+}
 
 #in-cart,#in-compar{
     padding: 0px;
@@ -982,7 +991,6 @@ ul.pagination li a.active, ul.pagination li a:hover,.pagination>.active>a:hover,
     margin-bottom: 10px;
     font-size: 26px;
     font-weight: 400;
-    text-align: center;
     color: #333333;
     font-family: "Century Gothic", "Trebuchet MS", "Helvetica", "Arial", sans-serif;
 }
@@ -1158,12 +1166,19 @@ textarea.form-control{
 
 #cheaper-btns{
     padding-top:10px;
-    border-top:1px solid #E7E7E7;
+}
+
+button[data-target="#chiper"]{
+    margin-left: 150px;
 }
 
 .modal-header{
     background: #EFA63F;
     color: white;
+}
+
+#tabs{
+    margin-top: 20px;
 }
 
 .nav-tabs a{

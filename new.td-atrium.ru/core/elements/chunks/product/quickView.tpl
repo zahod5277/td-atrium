@@ -62,14 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-offset-1">
-                <div class="col-sm-3 no-padding w1">В корзину</div>
-                <div class="col-sm-3 w2"></div>
-                <div class="col-sm-3">
-                    <button id="in-cart" type="submit" name="ms2_action" value="cart/add"></button>
-                </div>
-            </div>
-            <div class="form-group col-xs-12 form-inline">
+                        <div class="form-group col-xs-12 form-inline">
                 <label class="col-sm-12 control-label" for="product_price">
                     {$_modx->lexicon('ms2_cart_count')}:
                 </label>
@@ -95,6 +88,13 @@
                     {/if}
                 </div>
             </div>
+            <div class="col-sm-offset-1">
+                <div class="col-sm-3 no-padding w1">В корзину</div>
+                <div class="col-sm-3 w2"></div>
+                <div class="col-sm-3">
+                    <button id="in-cart" type="submit" name="ms2_action" value="cart/add"></button>
+                </div>
+            </div>
 {*            <div class="col-xs-12 col-md-12" id="cheaper-btns">
                 <div class="form-group">
                     <button type="button" class="modal-btn btn btn-warning" data-product="{$pagetitle}" data-toggle="modal" data-target="#call-me"><i class="fa fa-phone padding-right"></i>ПОЗВОНИТЕ МНЕ, я хочу это купить!</button>
@@ -103,7 +103,7 @@
                     <button type="button" class="modal-btn btn btn-warning" data-product="{$pagetitle}" data-toggle="modal" data-target="#chiper">Нашли дешевле?</button>
                 </div>
             </div>*}
-            {include 'file:chunks/product/tabs.tpl'}
+            {include 'file:chunks/product/quickTabs.tpl'}
         </form>
     </div>
 </div>

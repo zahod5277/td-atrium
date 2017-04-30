@@ -27,12 +27,12 @@
     <div class="span5 col-md-5">
         {$_modx->runSnippet('!msGallery')}
     </div>
-    <div class="span7 col-md-7">
+    <div class="span7 col-md-7 no-padding">
         <form class="form-horizontal ms2_form" method="post">
             <input type="hidden" name="id" value="{$_modx->resource.id}" />
             <div class="form-group">  
                 <div class="col-xs-12">
-                    <div class="col-xs-12 col-md-4" id="mainPrice">
+                    <div class="col-xs-12 col-md-4 no-padding" id="mainPrice">
                         <h3>Цена за шт:</h3>
                         <label class="price-main">
                             <span>{$priceInPcs|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
@@ -62,22 +62,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-offset-3">
-                <div class="col-sm-3 w1">В корзину</div>
-                <div class="col-sm-3">
-                    <button id="in-cart" type="submit" name="ms2_action" value="cart/add"></button>
-                </div>
-                <div class="col-sm-3">
-                    {$_modx->runSnippet('!addComparison',[
-                        'list_id' => '16',
-                        'id' => $id,
-                        'tpl'=>'@FILE:chunks/product/comparisonProductContent.tpl'
-                    ])}
-                </div>
-            </div>
-            <div class="form-group col-xs-12 form-inline">
+            <div class="form-group col-xs-12 col-md-4 form-inline">
                 <label class="col-sm-12 control-label" for="product_price">{$_modx->lexicon('ms2_cart_count')}:</label>
-                <div class="col-sm-offset-4 col-sm-5 count-outer">
+                <div class="col-xs-12 count-outer">
                     <div class="col-xs-12 col-md-6 no-padding">
                         <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
                         <input type="text" data-min="1" data-max="{$quantity}" {if $unit == 'шт.'}data-unit="PCE"{/if} name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
@@ -99,11 +86,22 @@
                     {/if}
                 </div>
             </div>
+            <div class="col-xs-12 col-md-8">
+                <div class="col-sm-6">
+                    <button id="in-cart" type="submit" name="ms2_action" value="cart/add"></button>
+                    <span class="cartAddTitle">В корзину</span>
+                </div>
+                <div class="col-sm-6">
+                    {$_modx->runSnippet('!addComparison',[
+                        'list_id' => '16',
+                        'id' => $id,
+                        'tpl'=>'@FILE:chunks/product/comparisonProductContent.tpl'
+                    ])}
+                </div>
+            </div>
             <div class="col-xs-12 col-md-12" id="cheaper-btns">
                 <div class="form-group">
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#call-me"><i class="fa fa-phone padding-right"></i>ПОЗВОНИТЕ МНЕ, я хочу это купить!</button>
-                </div>
-                <div class="form-group">
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#chiper">Нашли дешевле?</button>
                 </div>
             </div>

@@ -2,7 +2,6 @@
     <ul class="nav nav-tabs">
         <li><a data-toggle="tab" href="#home">Описание</a></li>
         <li class="active"><a data-toggle="tab" href="#menu1">Характеристики</a></li>
-        <li><a data-toggle="tab" href="#menu2">Отзывы</a></li>
     </ul>
     <div class="tab-content">
         <div id="home" class="tab-pane fade">
@@ -83,17 +82,6 @@
                     </tr>
                     {/if}
                 </table>
-            </div>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <div class="row no-padding">
-                {$id}
-                {$_modx->runSnippet('!TicketComments',[
-                    'thread' => 'resource-{$id}'
-                    'allowGuest' => 1,
-                    'tplComments' => '@FILE:chunks/reviews/commentsWrapper.tpl',
-                    'tplCommentFormGuest' => '@FILE:chunks/reviews/tplCommentsForm.tpl'
-                ])}
             </div>
         </div>
     </div>
