@@ -18,6 +18,8 @@ foreach ($kafels as $kafel){
     $products = $pdo->runSnippet('msProducts',array(
         'parents' => $collectionId,
         'where' => '{"Data.kafelType:=":"'.$kafel['kafelType'].'"}',
+        'includeThumbs' => 'row',
+        'limit' => 0,
         'tpl' => '@FILE:chunks/product/product.row.tpl'
     ));
     $collectionTypeItems .= $pdo->getChunk($tpl,array(

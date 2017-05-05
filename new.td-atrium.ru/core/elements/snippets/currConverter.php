@@ -6,10 +6,12 @@ if(empty($input)){return '';}
 $list = $currencyrate->getList();
 $input = (trim(str_replace(' ','',$input)));
 if(!empty($divider)) {
+        //из рублей в валюту
 	$divider = $list[$divider];
 	$output = $currencyrate->formatPrice(($input / $divider), $format, $noZeros);
 }
 if(!empty($multiplier)) {
+        //из валюты в рубли
         $multiplier = $list[$multiplier];
         $output = $currencyrate->formatPrice(($input * $multiplier), $format, $noZeros);
 }

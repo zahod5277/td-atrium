@@ -16,17 +16,19 @@
         'inM2' => $inM2
     ])}
 {/if}
+
 <div class="col-xs-12 col-sm-6 col-md-4 ms2_product">
+    
     <div class="image">
-        <a href="{$_modx->makeUrl($id)}">
-            <img class="img img-responsive" src="{$_modx->runSnippet('phpthumbon',['input'=>$image,'options'=>'w=250&h=250&zc=1'])}"/>
+        <a href="{$id|url}">
+            <img class="img img-responsive" src="{$row}"/>
         </a>
         <div class="hidden-xs col-md-12 no-padding quick-view-outer">
             <button type="button" class="ajax_link" data-toggle="modal" data-action="{$id}" data-target="#product-modal"><i class="fa fa-eye"></i> Быстрый просмотр</button>    
         </div>
     </div>
     <div class="name">
-        <a href="{$_modx->makeUrl($id)}">
+        <a href="{$id|url}">
             {$pagetitle}
         </a>
     </div>
@@ -36,12 +38,14 @@
             <span class="price">{$price|number: 2 : '.' : ' '} <i class="{$currency}"></i></span>
 
         </div>
-        {if $inM2!='' || $inM2!='0'}
-            {var $m2price = $price*$inM2}
-            <div class="col-xs-12 col-md-4 no-padding">
-                <p class="price-desc">Цена за м<sup>2</sup></p>
-                <span class="price">{$m2price|number: 0 :'.':' '} <i class="{$currency}"></i></span>
-            </div>
+        {if $unit == 'м2'}
+            {if $inM2!='' || $inM2!='0'}
+                {var $m2price = $price*$inM2}
+                <div class="col-xs-12 col-md-4 no-padding">
+                    <p class="price-desc">Цена за м<sup>2</sup></p>
+                    <span class="price">{$m2price|number: 0 :'.':' '} <i class="{$currency}"></i></span>
+                </div>
+            {/if}
         {/if}
         <div class="instock-outer col-xs-12 no-padding">
             <div class="col-xs-12 col-md-6 no-padding">
@@ -66,6 +70,8 @@
         <div class="col-xs-12 col-md-6 no-padding">
             <button class="one-click-buy" data-toggle="modal" data-target="#call-me" data-product="{$id} - {$pagetitle}" title="купить в один клик">Купить в один клик</button>
         </div>
-        <div class="col-xs-12 no-padding">	<p class="micro-disclaimer">*Цена указана со склада в Санкт-Петербурге</p></div>
+        <div class="col-xs-12 no-padding">
+            <p class="micro-disclaimer">*Цена указана со склада в Санкт-Петербурге</p>
+        </div>
     </div>
 </div>

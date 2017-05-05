@@ -12,16 +12,21 @@
     {/if}
 {/if}
 {if $unit=='м.кв.'}
+    {var $isoUnit = 'MTK'}
     {var $priceM2 = $price}
     {var $priceInPcs = $_modx->runSnippet('@FILE:snippets/inM2Divider.php',[
         'price' => $price,
         'inM2' => $inM2
     ])}
+    {var $class = ''}
 {else}
     {var $priceM2 = $price * $inM2}
+    {var $isoUnit = 'PCE'}
     {var $priceInPcs = $price}
+    {var $class = 'col-md-offset-4 ' }
 {/if}
-{$_modx->runSnippet('!pdoCrumbs', [ 'showHome' => 1, ])}
+
+{$_modx->runSnippet('!pdoCrumbs', ['showHome' => 1])}
 <h1>{$_modx->resource.pagetitle}</h1>
 <div id="msProduct" class="row">
     <div class="span5 col-md-5">
@@ -32,10 +37,10 @@
             <input type="hidden" name="id" value="{$_modx->resource.id}" />
             <div class="form-group">  
                 <div class="col-xs-12">
-                    <div class="col-xs-12 col-md-4 no-padding" id="mainPrice">
+                    <div class="{$class}col-xs-12 col-md-4 no-padding" id="mainPrice">
                         <h3>Цена за шт:</h3>
                         <label class="price-main">
-                            <span>{$priceInPcs|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
+                            <span class="price">{$priceInPcs|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
                             {if $unit=='шт.'}
                                 {if $old_price>0}
                                     <span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>
@@ -43,15 +48,13 @@
                             {/if}
                         </label>
                     </div>
-                    {if $_modx->resource.inM2!='' || $_modx->resource.inM2!='0'}
+                    {if $unit=='м.кв.'}
                         <div class="col-xs-12 col-md-4" id="m2price">
                             <h3>Цена за м<sup>2</sup>:</h3>
                             <label class="price-main">
-                                <span>{$priceM2|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
-                                {if $unit=='м.кв.'}
-                                    {if $old_price>0}
-                                        <span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>
-                                    {/if}
+                                <span class="price">{$priceM2|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
+                                {if $old_price>0}
+                                    <span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>
                                 {/if}
                             </label>
                         </div>
@@ -67,17 +70,17 @@
                 <div class="col-xs-12 count-outer">
                     <div class="col-xs-12 col-md-6 no-padding">
                         <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
-                        <input type="text" data-min="1" data-max="{$quantity}" {if $unit == 'шт.'}data-unit="PCE"{/if} name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
+                        <input type="text" data-min="1" data-max="{$quantity}" data-unit="{$isoUnit}" name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
                         <i data-operator="plus" class="fa quantity-operator fa-plus"></i>
                     </div>
                     <input type="hidden" name="options[m2price]">
                     <input type="hidden" name="totalprice" value="{$price}">
                     <div class="col-xs-12 col-md-6">
                         <strong class="msProductContentUnit">
-                            {$unit}
+                            шт.
                         </strong>
                     </div>
-                    {if $unit == 'шт.'}
+                    {if $unit == 'м.кв.'}
                         <div class="col-xs-12">
                             <i class="almost-equal" data-in="{$inM2}">
                                 &#8776; <i>{(1/$inM2)|number:2:'.':' '}</i> м<sup>2</sup>.

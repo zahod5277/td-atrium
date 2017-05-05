@@ -7,6 +7,7 @@
         '&suggestionsMaxFilters' => 10000,
         'tplOuter' => '@FILE:chunks/filter/filterOuter.tpl',
         'ajaxMode' => 'button',
+        'includeThumbs' => 'row',
         'limit' => '21',
         'filters' => 'ms|collection,ms|format,ms|kafelType,ms|made_in,ms|vendor:vendors,ms|primenenie,ms|surface',
         'tplFilter.outer.default' => '@FILE:chunks/filter/mFilter2.filter.outer.tpl',

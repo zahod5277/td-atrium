@@ -5,21 +5,22 @@ jQuery(document).ready(function () {
         $(this).siblings('.level-1-link').toggleClass('active-link');
         $(this).siblings('.level-2').toggle("fast");
     });
+    summChanger($('input[name="count"]').val());
     $(".mfilter-param input").on('change', function () {
         $("#categories-list").hide();
     });
-    $('input[data-unit="PCE"]').on('change',function(){
+    $('input[name="count"]').on('change', function () {
         inM2Titler(this);
     });
-    $('#result').on('click', 'i', function(){
+    $('#result').on('click', 'i', function () {
         quantityChanger($(this));
     });
-    $('.quantity-operator').on('click', function(){
+    $('.quantity-operator').on('click', function () {
         quantityChanger($(this));
     });
-    $('body').on('change', '.countInput',function () {
-        var val = $('input[name="totalprice"]').val() * $(this).val();
-        $('#product_total span').html(val);
+    $('body').on('change', '.countInput', function () {
+        var val = $(this).val();
+        summChanger(val);
     });
     $('.one-click-buy').click(function () {
         var product = $(this).data('product');
@@ -49,27 +50,39 @@ jQuery(document).ready(function () {
     });
 });
 
-function quantityChanger($this){
-        var input = $($this).parents('.form-group').find('input[name="count"]'),
+function quantityChanger($this) {
+    var input = $($this).parents('.form-group').find('input[name="count"]'),
             min = 1,
             val = parseInt($(input).val()),
             max = parseInt($(input).data('max'));
-       if ($($this).data('operator')==='minus'){
-           if (val > min){
-            $(input).val(val-1);
-           }
-       } else {
-           if (val < max){
-            $(input).val(val+1);
-           }
-       }
-    inM2Titler($($this).parents('.form-group').find('input[data-unit="PCE"]'));
+    if ($($this).data('operator') === 'minus') {
+        if (val > min) {
+            val--;
+            $(input).val(val);
+        }
+    } else {
+        if (val < max) {
+            val++;
+            $(input).val(val);
+        }
+    }
+    summChanger(input, val);
+    $(input).trigger('change');
     $($this).parents('td.count').find('button[value="cart/change"]').trigger('click');
 }
 
-function inM2Titler($this){
-     var inM2 = $($this).parents('form').find('.almost-equal').data('in'),
-        prCount = $($this).parents('form').find('input[data-unit="PCE"]').val(),
-        summaryM2 = Math.round(((prCount/inM2)*100))/100;
-        $($this).parents('form').find('.almost-equal i').html(summaryM2);
+function inM2Titler($this) {
+    var inM2 = $($this).parents('form').find('.almost-equal').data('in'),
+            prCount = $($this).parents('form').find('input[data-unit="MTK"]').val(),
+            summaryM2 = Math.round(((prCount / inM2) * 100)) / 100;
+    $($this).parents('form').find('.almost-equal i').html(summaryM2);
+}
+
+function summChanger(val) {
+    console.log('идет сюда');
+    if ($('#mainPrice span').is('.price')) {
+        console.log('а потом сюда');
+        var price = $('#mainPrice .price-main span.price').html();
+        $('#product_total span').html(price.replace(' ', '') * val);
+    }
 }

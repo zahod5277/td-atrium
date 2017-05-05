@@ -1,14 +1,13 @@
 {extends 'file:templates/base.tpl'}
 {block 'content'}
-    <div id="bg">
-        <div class="container">
-            <div class="category-details">
-                {include 'file:chunks/common/crumbs.tpl'}
-                <h1>Состав коллекции {$_modx->resource.pagetitle}</h1>
-                {$_modx->runSnippet('@FILE:snippets/GetCollectionProducts.php',[
-                    'collectionId' => $_modx->resource.id
-                ])}
-            </div>
-        </div>
+    <div id="bg" class="other-page">
+        {var $isCollection = $_modx->runSnippet('@FILE:snippets/getCollectionCount.php',[
+            'id' => $_modx->resource.id
+        ])}
+        {if $isCollection}
+            {include 'file:chunks/collection/collectionTemplateOuter.tpl'}
+        {else}
+            {include 'file:chunks/product/categoryContent.tpl'}
+        {/if}
     </div>
 {/block}

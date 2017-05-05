@@ -38,13 +38,13 @@
                         <input type="hidden" name="key" value="{$product.key}"/>
                         <div class="form-group">
                             <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
-                            <input type="text" data-min="1" data-max="{$product.quantity}"  {if $product.unit=='шт.'}data-unit="PCE"{/if} name="count" value="{$product.count}"
+                            <input type="text" data-min="1" data-max="{$product.quantity}"  {if $product.unit=='м.кв.'}data-unit="MTK"{/if} name="count" value="{$product.count}"
                                    class="input-sm form-control"/>
                             <i data-operator="plus" class="fa quantity-operator fa-plus"></i>
                             <span class="hidden-xs">
-                                {$product.unit}
+                                шт.
                             </span>
-                            {if $product.unit == 'шт.'}
+                            {if $product.unit == 'м.кв.'}
                                 <div class="col-xs-12">
                                     <i class="almost-equal" data-in="{$product.inM2}">
                                         &#8776; <i>{($product.count/$product.inM2)|number:2:'.':' '}</i> м<sup>2</sup>.
