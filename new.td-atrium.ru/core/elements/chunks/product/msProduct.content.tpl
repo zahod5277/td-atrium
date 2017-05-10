@@ -70,7 +70,7 @@
                 <div class="col-xs-12 count-outer">
                     <div class="col-xs-12 col-md-6 no-padding">
                         <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
-                        <input type="text" data-min="1" data-max="{$quantity}" data-unit="{$isoUnit}" name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
+                        <input type="text" data-min="1" data-max="1500" data-unit="{$isoUnit}" name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
                         <i data-operator="plus" class="fa quantity-operator fa-plus"></i>
                     </div>
                     <input type="hidden" name="options[m2price]">

@@ -82,7 +82,8 @@ function summChanger(val) {
     console.log('идет сюда');
     if ($('#mainPrice span').is('.price')) {
         console.log('а потом сюда');
-        var price = $('#mainPrice .price-main span.price').html();
-        $('#product_total span').html(price.replace(' ', '') * val);
+        var price = $('#mainPrice .price-main span.price').html(),
+            sumPrice = Math.round(((price.replace(' ', '') * val)*100)/100);
+        $('#product_total span').html(sumPrice);
     }
 }

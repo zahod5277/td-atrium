@@ -38,7 +38,7 @@
             <span class="price">{$price|number: 2 : '.' : ' '} <i class="{$currency}"></i></span>
 
         </div>
-        {if $unit == 'м2'}
+        {if $unit == 'м.кв.'}
             {if $inM2!='' || $inM2!='0'}
                 {var $m2price = $price*$inM2}
                 <div class="col-xs-12 col-md-4 no-padding">
