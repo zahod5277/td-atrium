@@ -91,7 +91,7 @@
 
         <div class="col-md-6">
             <h4>{'ms2_frontend_address' | lexicon}:</h4>
-            {foreach ['index','region','city'] as $field}
+            {foreach ['city'] as $field}
                 <div class="form-group input-parent">
                     <label class="col-md-4 control-label" for="{$field}">
                         <span class="required-star">*</span> {('ms2_frontend_' ~ $field) | lexicon}
@@ -103,19 +103,15 @@
                     </div>
                 </div>
             {/foreach}
-            <div class="form-group input-parent">
-                <label class="col-md-4 control-label" for="street">
-                    <span class="required-star">*</span> {'ms2_frontend_street' | lexicon}</label>
-                <div class="col-md-6 row">
-                    {foreach ['street','building','room'] as $field}
-                        <div class="col-md-4">
-                            <input type="text" id="{$field}" placeholder="{('ms2_frontend_' ~ $field) | lexicon}"
-                                   name="{$field}" value="{$form[$field]}"
-                                   class="form-control{($field in list $errors) ? ' error' : ''}">
-                        </div>
-                    {/foreach}
+            {foreach ['street','building','room'] as $field}
+                <div class="form-group input-parent">
+                    <div class="col-sm-offset-4 col-sm-6">
+                        <input type="text" id="{$field}" placeholder="{('ms2_frontend_' ~ $field) | lexicon}"
+                               name="{$field}" value="{$form[$field]}"
+                               class="form-control{($field in list $errors) ? ' error' : ''}">
+                    </div>
                 </div>
-            </div>
+            {/foreach}
         </div>
 
     </div>

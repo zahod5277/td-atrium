@@ -10,11 +10,11 @@
             <div class="modal-body">
             {$_modx->runSnippet('!AjaxForm', [
                 'form' => '@FILE:chunks/forms/callMeForm.tpl',
-                'hooks' => 'email',
+                'hooks' => 'spam,email',
                 'emailTpl' => 'call-me-callback-tpl',
                 'emailSubject' => 'Перезвоните мне, я хочу это купить',
-                'emailTo' => 'zahod5277@mail.ru',
-                'emailFrom' => 'admin@td-atrium.ru',
+                'emailTo' => $_modx->config.siteMail,
+                'emailFrom' => $_modx->config.emailFrom,
                 'validate' => 'name:required,phone:required'
                 'validationErrorMessage' =>'В форме содержатся ошибки!'
                 'successMessage' => 'Сообщение успешно отправлено'

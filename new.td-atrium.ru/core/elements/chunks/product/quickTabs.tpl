@@ -32,12 +32,12 @@
                         <td>{$surface}</td>
                     </tr>
                     {/if}
-                    {if $color?}
+{*                    {if $color?}
                     <tr>
                         <td>Цвет</td>
                         <td>{$color}</td>
                     </tr>
-                    {/if}
+                    {/if}*}
                     {if $made_in?}
                     <tr>
                         <td>Страна-производитель</td>

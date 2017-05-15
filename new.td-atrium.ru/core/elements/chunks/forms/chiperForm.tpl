@@ -6,6 +6,7 @@
         </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Номер телефона" name="ch_phone">
+            <input type="hidden" name="ch_url" value="{$_modx->resource.pagetitle} id: {$_modx->resource.id}">
         </div>
         <div class="form-group">
             <textarea class="form-control" placeholder="Ссылка на сайт, где данный товар дешевле" name="ch_link"></textarea>

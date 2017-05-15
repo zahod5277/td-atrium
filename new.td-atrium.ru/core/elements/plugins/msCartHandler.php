@@ -16,15 +16,15 @@ switch ($modx->event->name) {
                 $list = $currencyrate->getList();
                 $multiplier = $list['EUR'];
                 $price = $currencyrate->formatPrice(($price_eu * $multiplier), $format, $noZeros);
-                $price = round($price,2);
-                if ($unit=='м.кв.'){
-                    $inM2 = $page->get('inM2');
-                    $price_eu = round($price/$inM2,2);
-                } else {
-                    $price_eu = $price;
-                }
-                $product->set('price', $price_eu);
+                $price = round($price, 2);
             }
         }
+        if ($unit == 'м.кв.') {
+            $inM2 = $page->get('inM2');
+            $price_eu = round($price / $inM2, 2);
+        } else {
+            $price_eu = $price;
+        }
+        $product->set('price', $price_eu);
         break;
 }

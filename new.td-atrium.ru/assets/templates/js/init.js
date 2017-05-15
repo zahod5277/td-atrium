@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
     $(".mfilter-param input").on('change', function () {
         $("#categories-list").hide();
     });
-    $('input[name="count"]').on('change', function () {
+    $('body').on('change', 'input[name="count"]', function () {
         inM2Titler(this);
     });
     $('#result').on('click', 'i', function () {
@@ -53,18 +53,15 @@ jQuery(document).ready(function () {
 function quantityChanger($this) {
     var input = $($this).parents('.form-group').find('input[name="count"]'),
             min = 1,
-            val = parseInt($(input).val()),
-            max = parseInt($(input).data('max'));
-    if ($($this).data('operator') === 'minus') {
+            val = parseInt($(input).val());
+    if ($($this).data('operator') === 'minus'){
         if (val > min) {
             val--;
             $(input).val(val);
         }
     } else {
-        if (val < max) {
             val++;
             $(input).val(val);
-        }
     }
     summChanger(input, val);
     $(input).trigger('change');
@@ -73,15 +70,13 @@ function quantityChanger($this) {
 
 function inM2Titler($this) {
     var inM2 = $($this).parents('form').find('.almost-equal').data('in'),
-            prCount = $($this).parents('form').find('input[data-unit="MTK"]').val(),
-            summaryM2 = Math.round(((prCount / inM2) * 100)) / 100;
+        prCount = $($this).parents('form').find('input[data-unit="MTK"]').val(),
+        summaryM2 = Math.round(((prCount / inM2) * 100)) / 100;
     $($this).parents('form').find('.almost-equal i').html(summaryM2);
 }
 
 function summChanger(val) {
-    console.log('идет сюда');
     if ($('#mainPrice span').is('.price')) {
-        console.log('а потом сюда');
         var price = $('#mainPrice .price-main span.price').html(),
             sumPrice = Math.round(((price.replace(' ', '') * val)*100)/100);
         $('#product_total span').html(sumPrice);

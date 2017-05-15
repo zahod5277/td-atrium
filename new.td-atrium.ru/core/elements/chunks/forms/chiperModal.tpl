@@ -10,16 +10,15 @@
       <div class="modal-body">
           {$_modx->runSnippet('!AjaxForm', [
             'form' => '@FILE:chunks/forms/chiperForm.tpl',
-            'hooks' => 'email',
+            'hooks' => 'spam,email',
             'emailTpl' => 'chiper-callback-tpl',
             'emailSubject' => 'Нашли дешевле',
-            'emailTo' => 'zahod5277@mail.ru',
-            'emailFrom' => 'admin@td-atrium.ru',
-            'validate' => 'ch_name:required,ch_phone:required'
-            'validationErrorMessage' =>'В форме содержатся ошибки!'
+            'emailTo' => $_modx->config.siteMail,
+            'emailFrom' => $_modx->config.emailFrom,
+            'validate' => 'ch_name:required,ch_phone:required',
+            'validationErrorMessage' =>'В форме содержатся ошибки!',
             'successMessage' => 'Сообщение успешно отправлено'
         ])}
-
       </div>
       <div class="clearfix"></div>    
       <div class="modal-footer">

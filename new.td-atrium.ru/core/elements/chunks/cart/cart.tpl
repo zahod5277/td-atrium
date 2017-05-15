@@ -38,7 +38,7 @@
                         <input type="hidden" name="key" value="{$product.key}"/>
                         <div class="form-group">
                             <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
-                            <input type="text" data-min="1" data-max="{$product.quantity}"  {if $product.unit=='м.кв.'}data-unit="MTK"{/if} name="count" value="{$product.count}"
+                            <input type="text" data-min="1"  {if $product.unit=='м.кв.'}data-unit="MTK"{/if} name="count" value="{$product.count}"
                                    class="input-sm form-control"/>
                             <i data-operator="plus" class="fa quantity-operator fa-plus"></i>
                             <span class="hidden-xs">
@@ -59,9 +59,9 @@
                 </td>
                 <td class="price">
                     <span>{$product.price}</span> {'ms2_frontend_currency' | lexicon}
-                    {if $product.old_price?}
+                    {*{if $product.old_price?}
                         <span class="old_price">{$product.old_price} {'ms2_frontend_currency' | lexicon}
-                        {/if}
+                        {/if}*}
                 </td>
                 <td class="remove">
                     <form method="post" class="ms2_form">

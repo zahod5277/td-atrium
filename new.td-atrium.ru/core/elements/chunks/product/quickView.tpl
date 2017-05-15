@@ -35,7 +35,7 @@
                     <div class="col-xs-12 col-md-4" id="mainPrice">
                         <h3>Цена за шт:</h3>
                         <label class="price-main">
-                            <span>{$priceInPcs|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
+                            <span class="price">{$priceInPcs|number: 2 : '.' : ' '}</span> <i class="{$currency}"></i>
                             {if $unit=='шт.'}
                                 {if $old_price>0}
                                     <span class="old_price">{$old_price} {$_modx->lexicon('ms2_frontend_currency')}</span>
@@ -62,14 +62,14 @@
                     </div>
                 </div>
             </div>
-                        <div class="form-group col-xs-12 form-inline">
+            <div class="form-group col-xs-12 form-inline">
                 <label class="col-sm-12 control-label" for="product_price">
                     {$_modx->lexicon('ms2_cart_count')}:
                 </label>
                 <div class="col-sm-offset-4 col-sm-8 count-outer">
                     <div class="col-xs-12 col-md-6 no-padding">
                         <i data-operator="minus" class="fa quantity-operator fa-minus"></i>
-                        <input type="text" data-min="1" data-max="{$quantity}" {if $unit == 'шт.'}data-unit="PCE"{/if} name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
+                        <input type="text" data-min="1" {if $unit == 'м.кв.'}data-unit="MTK"{/if} name="count" id="product_price" class="countInput input-sm form-control" value="1"/>
                         <i data-operator="plus" class="fa quantity-operator fa-plus"></i>
                     </div>
                     <input type="hidden" name="options[m2price]">
@@ -79,7 +79,7 @@
                             {$unit}
                         </strong>
                     </div>
-                    {if $unit == 'шт.'}
+                    {if $unit == 'м.кв.'}
                         <div class="col-xs-12">
                             <i class="almost-equal" data-in="{$inM2}">
                                 &#8776; <i>{(1/$inM2)|number:2:'.':' '}</i> м<sup>2</sup>.

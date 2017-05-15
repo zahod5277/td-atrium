@@ -43,4 +43,4 @@
     </div>
 </footer>
 {include 'file:chunks/product/quickViewModal.tpl'}
-{include 'file:chunks/forms/callbackModal.tpl'}
+{include 'file:chunks/common/callback.tpl'}

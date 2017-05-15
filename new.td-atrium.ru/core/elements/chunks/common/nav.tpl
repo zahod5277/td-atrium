@@ -8,7 +8,7 @@
                 'sortBy' => 'menuindex',
                 'sortDir' => 'desc',
                 'tplInner' => '@INLINE <ul class="top-level-2">{$wrapper}</ul>',
-                'tplInnerRow' => '@INLINE <li><a href="{$uri}" title="{$pagetitle}">{$pagetitle}</a></li>'
+                'tplInnerRow' => '@INLINE <li><a href="{$uri}" title="{$pagetitle}">{$menutitle}</a></li>'
                 'tplOuter' => '@INLINE {$wrapper}'
             ])}
             {$_modx->runSnippet('pdoMenu', [
@@ -19,7 +19,7 @@
                 'sortBy' => 'menuindex',
                 'sortDir' => 'desc',
                 'tplInner' => '@INLINE <ul class="top-level-2">{$wrapper}</ul>',
-                'tplInnerRow' => '@INLINE <li><a href="{$uri}" title="{$pagetitle}">{$pagetitle}</a></li>'
+                'tplInnerRow' => '@INLINE <li><a href="{$uri}" title="{$pagetitle}">{$menutitle}</a></li>'
                 'tplOuter' => '@INLINE {$wrapper}'
             ])}
         </ul>
