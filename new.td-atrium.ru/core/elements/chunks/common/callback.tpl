@@ -10,7 +10,7 @@
                 <h6>*В рабочее время. В нерабочие часы время ожидания обратного звонка может быть увеличено.</h6>
                {$_modx->runSnippet('!AjaxForm', [
                 'form' => '@FILE:chunks/forms/callbackModal.tpl',
-                'hooks' => 'spam,email',
+                'hooks' => 'spam,FormItSaveForm,email',
                 'emailTpl' => 'callback-tpl',
                 'emailSubject' => 'Перезвоните мне',
                 'emailTo' => $_modx->config.siteMail,

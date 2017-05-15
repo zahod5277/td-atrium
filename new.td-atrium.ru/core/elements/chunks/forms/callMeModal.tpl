@@ -10,7 +10,7 @@
             <div class="modal-body">
             {$_modx->runSnippet('!AjaxForm', [
                 'form' => '@FILE:chunks/forms/callMeForm.tpl',
-                'hooks' => 'spam,email',
+                'hooks' => 'spam,FormItSaveForm,email',
                 'emailTpl' => 'call-me-callback-tpl',
                 'emailSubject' => 'Перезвоните мне, я хочу это купить',
                 'emailTo' => $_modx->config.siteMail,

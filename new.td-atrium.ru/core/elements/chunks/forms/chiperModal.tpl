@@ -10,7 +10,7 @@
       <div class="modal-body">
           {$_modx->runSnippet('!AjaxForm', [
             'form' => '@FILE:chunks/forms/chiperForm.tpl',
-            'hooks' => 'spam,email',
+            'hooks' => 'spam,FormItSaveForm,email',
             'emailTpl' => 'chiper-callback-tpl',
             'emailSubject' => 'Нашли дешевле',
             'emailTo' => $_modx->config.siteMail,
