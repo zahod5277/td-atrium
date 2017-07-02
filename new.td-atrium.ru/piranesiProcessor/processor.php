@@ -26,7 +26,7 @@ class pirProcessor {
         //return $query->toSQL();
         $query->stmt->execute();
         $result = $query->stmt->fetch(PDO::FETCH_ASSOC);
-        if (($result)!=false){
+        if (($result) != false) {
             $output = $result['modResource_id'];
         } else {
             $output = 'empty';
@@ -48,19 +48,13 @@ class pirProcessor {
         }
         return $result;
     }
-    
-    function createVendor($vendor_name){
-        $vendor = $this->modx->newObject('msVendor',[
+
+    function createVendor($vendor_name) {
+        $vendor = $this->modx->newObject('msVendor', [
             'name' => $vendor_name
         ]);
         $vendor->save();
         return $vendor->get('id');
-    }
-    
-    function createVendorCategory($vendor_id,$category){
-        
-        
-        return $response;
     }
 
     function createAlias($pagetitle) {
@@ -103,8 +97,8 @@ class pirProcessor {
         }
         return $filename;
     }
-    
-    function getVendorResource($vendor_id,$category){
+
+    function getVendorResource($vendor_id, $category) {
         $query = $this->modx->newQuery('modResource');
         $query->leftJoin('modTemplateVarResource', 'TV', 'TV.contentid = modResource.id');
         $query->where([
@@ -118,8 +112,95 @@ class pirProcessor {
         $result = $query->stmt->fetch(PDO::FETCH_ASSOC);
         return $result['modResource_id'];
     }
-    
-    function productSizeFormatter($size){
-        return explode('x', $size);
+
+    function productSizeFormatter($size) {
+        return explode('х', $size);
     }
+
+    function productColorFormatter($color) {
+        return json_encode(explode(';', $color));
+    }
+
+    //да простит меня великий рэндом за это.
+    //но с регуляркой я чото не смог
+    function productSqareBracketsRemove($string) {
+        $string = str_replace('["', '', $string);
+        $string = str_replace('"]', '', $string);
+        $output = explode(',', $string);
+        return $output;
+    }
+
+    function productWeightFormatter($weight, $offset) {
+        $strpos = stripos($weight, '- ');
+        $endstrpos = stripos($weight, ' кг');
+        $str_length = $endstrpos - $strpos;
+        $str = substr($weight, $strpos + $offset, $str_length - $offset);
+        return $str;
+    }
+
+    function productCreate($row, $parent, $vendor_id) {
+        //обрабатываем входные данные для соответствия БД
+        $size = $this->productSizeFormatter($row['el_size']);
+        $sizeInM2 = floatval($size[0] * 0.01) * floatval($size[1] * 0.01);
+        $inM2 = round(1 / $sizeInM2);
+        $color = $this->productColorFormatter($row['el_ColorValue']);
+        $box = $this->productSqareBracketsRemove($row['el_box']);
+        $primenenie = $this->productSqareBracketsRemove($row['el_application']);
+        $pic = $this->getFileByFTP($row['el_pic']);
+        $weight = $this->productWeightFormatter($row['el_box'], 2);
+
+        if ($row['el_edizm_edizm'] == 'шт') {
+            $edizm = 'шт.';
+        } elseif ($row['el_edizm_edizm'] == 'м2') {
+            $edizm = 'м.кв.';
+        }
+
+        //Заполняем массив с товарами
+        $productProperties = [
+            'price' => $row['el_price'],
+            'article' => $row['el_code'],
+            'pagetitle' => $row['el_name'],
+            'unit' => $edizm,
+            'made_in' => $row['col_col_country'],
+            'color' => $color,
+            'collection' => $row['col_col_name'],
+            'inM2' => $inM2,
+            'quantity' => '',
+            'box' => $box[0],
+            'primenenie' => $primenenie[0],
+            'weight' => $weight,
+            'width' => $size[0]*0.01,
+            'length' => $size[1]*0.01,
+            'vendor' => $vendor_id,
+            'category' => $row['el_category'],
+            'surface' => $row['el_surface'],
+            'distibutor' => 'piranesi',
+            'kafelType' => $row['el_place'],
+            'class_key' => 'msProduct',
+            'published' => 1,
+            'template' => 7,
+            'parent' => $parent
+        ];
+        $product = $this->createDocument($productProperties);
+        $img = $this->productGalleryUpload($pic, $product['id']);
+        $response = [
+            'product' => $product['id'],
+            'img' => $img
+        ];
+        return $response;
+    }
+
+    function productGalleryUpload($pic, $resource) {
+        $name = basename($pic);
+        $response = $this->modx->runProcessor('gallery/upload', array(
+            'id' => $resource,
+            'name' => $name, 
+            'file' => $pic,
+                ), array(
+            'processors_path' =>  'core/components/minishop2/processors/mgr/'
+                )
+        );
+        return $response;
+    }
+
 }
